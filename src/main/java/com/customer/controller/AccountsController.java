@@ -14,12 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.List;
-
 @Slf4j
 @RefreshScope
 @RestController
-@RequestMapping(value = "/v1/customer", produces = { MediaType.APPLICATION_JSON_VALUE })
+@RequestMapping(value = "/v1/customer/{id}", produces = { MediaType.APPLICATION_JSON_VALUE })
 @RequiredArgsConstructor
 public class AccountsController {
 
@@ -29,12 +27,12 @@ public class AccountsController {
     private final CustomerService customerService;
 
     @GetMapping
-    public List<Customer> getCustomer(@PathVariable Long idCustomer) {
+    public Customer getCustomer(@PathVariable long id) {
         if (!allowGetAccounts) {
             log.info("Getting accounts is disabled");
             throw new ResponseStatusException(HttpStatus.SERVICE_UNAVAILABLE, "Getting customer is disabled");
         }
 
-        return customerService.getAll();
+        return customerService.get(id);
     }
 }

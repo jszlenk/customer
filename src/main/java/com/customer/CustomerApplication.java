@@ -24,14 +24,14 @@ public class CustomerApplication {
             customerService.save(new Customer("John", "Connor"));
 
             log.info("Customers found with findAll():");
-            for (Customer account : customerService.getAll()) {
-                log.info(account.toString());
+            for (Customer customer : customerService.getAll()) {
+                log.info(customer.toString());
             }
             log.info("-------------------------------");
 
-            Optional<Customer> account = customerService.get(1L);
+            Customer customer = customerService.get(2L);
             log.info("Customer found with findById(1L):");
-            log.info(account.toString());
+            log.info(customer.toString());
         };
     }
 

@@ -14,8 +14,8 @@ public class CustomerService {
 
     private final CustomerRepository customerRepository;
 
-    public Optional<Customer> get(long id) {
-        return Optional.ofNullable(customerRepository.findById(id));
+    public Customer get(long id) {
+        return customerRepository.findById(id);
     }
 
     public List<Customer> getAll() {
